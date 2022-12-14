@@ -1,0 +1,22 @@
+#This configuration is for a Docker container named "firebase-emulator-suite" that runs the Firebase Emulator Suite.  
+
+version: '3.3'
+services:
+    firebase-emulator-suite:
+        container_name: firebase-emulator-suite
+        #The container will automatically restart if it stops.
+        restart: always
+        #The configuration specifies that the local directory "./firebase-emulator-suite/" should be mapped to the "/app" directory inside the container. 
+        volumes:
+          - ./firebase-emulator-suite/config:/app
+        ports:
+          - "5001:5001"
+          - "8080:8080"
+          - "9000:9000"
+          - "5000:5000"
+          - "8085:8085"
+          - "8001:8001"
+          - "9199:9199"
+        build:
+          #Finally, the configuration specifies the location of the Dockerfile for building the container.
+          dockerfile: firebase-emulator-suite/Dockerfile
